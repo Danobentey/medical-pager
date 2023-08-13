@@ -9,7 +9,7 @@ import './App.css'
 
 const apiKey = 's2cyj2m6sake';
 
-const client = StreamChat.getInstance('apiKey')
+const client = StreamChat.getInstance(apiKey)
 
 const App = () => { 
   return (
