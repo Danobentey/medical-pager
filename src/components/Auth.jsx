@@ -4,21 +4,38 @@ import axios from "axios";
 
 import signinImage from "../assets/signup.jpg";
 
+const initialState = {
+  fullName: "",
+  username: "",
+  password: "",
+  confirmPassword: "",
+  phoneNumber: "",
+  avatarURL: "",
+};
+
 const Auth = () => {
+  const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(true);
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(form);
+  };
 
   const switchMode = () => {
-    setIsSignup((prevState) => !prevState)
-  }
+    setIsSignup((prevState) => !prevState);
+  };
 
   return (
     <div className="auth__form-container">
       <div className="auth__form-container_fields">
         <div className="auth__form-container_fields-content">
           <p>{isSignup ? "Sign Up" : "Sign In"}</p>
-          <form onSubmit={() => {}}>
+          <form onSubmit={handleSubmit}>
             {isSignup && (
               <div className="auth__form-container_fields-content_input">
                 <label htmlFor="fullName">Full Name</label>
@@ -90,10 +107,14 @@ const Auth = () => {
                 />
               </div>
             )}
+
+            <div className="auth__form-container_fields-content_button">
+              <button>{isSignup ? "Sign Up" : "Sign In"}</button>
+            </div>
           </form>
           <div className="auth__form-container_fields-account">
             <p>
-              {isSignup ? "Already have an account?" : "Don't have an account?"} 
+              {isSignup ? "Already have an account?" : "Don't have an account?"}
               <span onClick={switchMode}>
                 {isSignup ? "Sign In" : "Sign Up"}
               </span>
