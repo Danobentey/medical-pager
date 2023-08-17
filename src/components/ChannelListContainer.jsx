@@ -15,7 +15,7 @@ const SideBar = ({ logout }) => (
         <img src={HospitalIcon} alt="Hospital" width="30" />
       </div>
     </div>
-    <div className="channel-list__sidebar__icon2" onClick={() => logout}>
+    <div className="channel-list__sidebar__icon2" onClick={() => logout()}>
       <div className="icon1__inner">
         <img src={LogoutIcon} alt="Logout" width="30" />
       </div>
@@ -31,6 +31,7 @@ const CompanyHeader = () => (
 
 const ChannelListContainer = () => {
   const logout = () => {
+    cookies.remove('token');
     cookies.remove('userId');
     cookies.remove('username');
     cookies.remove('fullName');
