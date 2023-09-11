@@ -49,13 +49,13 @@ const ChannelListContainer = () => {
         <CompanyHeader />
         <ChannelSearch />
         <ChannelList
-          filters={{}}
+          filters={{ members: {$in: [cookies.get('userId')]} }}
           channelRenderFilterFn={() => {}}
           List={(listProps) => (
             <TeamChannelList {...listProps} type="team" />
           )}
           Preview={(previewProps) => (
-            <TeamChannelPreview {...previewProps} type="team" />
+            <TeamChannelPreview {...previewProps} type="team"  />
           )}
         />
         <ChannelList

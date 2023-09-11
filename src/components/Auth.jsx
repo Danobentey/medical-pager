@@ -17,7 +17,7 @@ const cookies = new Cookies();
 
 const Auth = () => {
   const [form, setForm] = useState(initialState);
-  const [isSignup, setIsSignup] = useState(true);
+  const [isSignup, setIsSignup] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -30,7 +30,7 @@ const Auth = () => {
 
     const URL = 'http://localhost:5000/auth';
 
-    const { data : { token, userId, hashedPassword } } = await axios.post(`${URL}/signup`, {
+    const { data : { token, userId, hashedPassword } } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
       username, fullName, phoneNumber, avatarURL, password
     })
 
@@ -44,9 +44,8 @@ const Auth = () => {
       cookies.set('avatarURL', avatarURL);
       cookies.set('hashedPassword', hashedPassword);
     }
-
+    
     window.location.reload()
-
   };
 
   const switchMode = () => {
